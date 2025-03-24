@@ -7,16 +7,20 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;500&display=swap" rel="stylesheet">
   <style>
-    /* General Styling */
-    html,
-    body {
+    /* Reset margins and paddings */
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
       height: 100%;
       width: 100%;
       overflow-x: hidden;
       font-family: 'Raleway', sans-serif;
-      background-color: #f9f7f1;
+      /* Apply the sand background to the entire body */
+      background: url('https://st.depositphotos.com/1000507/1958/i/950/depositphotos_19580455-stock-photo-fine-grain-white-beach-sand.jpg') no-repeat center center;
+      background-size: cover;
       color: #444;
     }
     body {
@@ -25,166 +29,125 @@
       min-height: 100vh;
       text-align: center;
     }
-    
     /* Smooth fade-in animations */
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
       animation: fadeIn 1s ease-out forwards;
     }
-    
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    
-    /* Header */
+    /* Header - fixed at top */
     header {
-      margin: 0;
       background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf4KX3xXumYS0g3gmAaYFYa3dZCZnL3k48fQ&s') no-repeat center center/cover;
       color: lightblue;
-      padding: 80px 30px;
+      padding: 40px 30px;
       width: 100%;
-      box-sizing: border-box;
-      overflow: hidden;
-      font-size: 10px;
       font-family: 'Playfair Display', serif;
       animation: fadeIn 1.5s ease-out;
-      position: relative;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
     }
-    
     header h1 {
       font-family: cursive;
       color: black;
       margin: 0;
-      /* Using clamp for viewport-based sizing:
-         Minimum 24px, scales with viewport width (5vw), maximum 40px */
       font-size: clamp(24px, 5vw, 40px);
       letter-spacing: 2px;
       white-space: nowrap;
-      text-shadow: 1px 1px 2px green,
-                   -1px -1px 2px red,
-                   1px -1px 2px yellow,
-                   -1px 1px 2px green;
+      text-shadow: 1px 1px 2px green, -1px -1px 2px red, 1px -1px 2px yellow, -1px 1px 2px green;
     }
-    
     header p {
       margin: 5px 0 0;
       font-style: italic;
       font-size: 1.2em;
       text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
     }
-    
-    /* Navigation Bar */
+    /* Navigation Bar - positioned below header */
     nav {
-      background-color: lightblue;
+      background: linear-gradient(180deg, lightblue, beige, lightblue);
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 15px 20px;
       box-sizing: border-box;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
-    
     nav a {
       color: black;
       padding: 14px 25px;
       text-decoration: none;
-      font-size: 1.1em;
+      font-size: 10px;
       font-weight: 500;
     }
-    
     nav a:hover {
       background-color: rgba(255, 255, 255, 0.2);
       border-radius: 5px;
       transform: scale(1.1);
     }
-    
-    /* Remove animation from navigation content */
     .nav-links {
-      display: flex;
+      display: none;
       justify-content: space-around;
       align-items: center;
       width: 100%;
     }
-    
-    /* Section Container */
-    .container {
-      padding: 40px 20px;
-      width: 100%;
-      max-width: 800px;
-      box-sizing: border-box;
-      margin: auto;
-      flex-grow: 1;
-    }
-    
+    /* Full-width section without individual background image */
     .section {
-      opacity: 0;
-      transform: translateY(20px);
+      width: 100%;
+      /* Background image removed to rely on the body's background */
+      padding: 40px 20px;
       animation: fadeIn 0.8s ease-out forwards;
     }
-    
+    /* Content container to center text */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
     /* Slideshow Styling */
     .slideshow-container {
       position: relative;
       max-width: 100%;
       height: 250px;
-      margin: auto;
+      margin: 20px auto;
     }
-    
     .slides {
       display: none;
     }
-    
     .slideshow-container img {
       width: 100%;
       height: 250px;
       object-fit: cover;
     }
-    
     /* Footer */
     footer {
-      background: linear-gradient(to right, #2c3e50, #4ca1af);
-      color: white;
+      color: black;
       text-align: center;
       padding: 15px 0;
       width: 100%;
-      box-sizing: border-box;
-      overflow: hidden;
       font-size: 0.9em;
       font-style: italic;
     }
-    
     .social-icons {
       display: flex;
       justify-content: center;
       width: 100%;
     }
-    
     .social-icons a {
       margin: 0 10px;
       transition: transform 0.3s ease;
     }
-    
     .social-icons a:hover {
       transform: scale(1.2);
     }
-    
     .social-icons img {
       width: 35px;
       margin: 5px;
-      filter: brightness(0) invert(1);
     }
-    
     /* Button Styling */
     button {
       background: #2c3e50;
@@ -196,38 +159,20 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
-    
     button:hover {
       background: #4ca1af;
       transform: scale(1.1);
     }
-    
     /* Hamburger Icon */
     #hamburger-icon {
       font-size: 40px;
       cursor: pointer;
       color: black;
     }
-    
-    /* Larger X icon */
     #hamburger-icon.open {
-      font-size: 50px;
+      font-size: 40px;
     }
-    
-    /* Make navigation row always visible */
-    .nav-links {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      width: 100%;
-    }
-    
-    /* Ensures menu items remain in a row */
-    .nav-links a {
-      padding: 10px;
-    }
-    
-    /* About Section Styling */
+    /* About Section Images */
     #about img {
       width: 150px;
       height: 150px;
@@ -235,17 +180,14 @@
       border-radius: 50%;
       margin: 10px 0;
     }
-    
     .about-team-member {
       text-align: center;
       max-width: 200px;
       margin: 10px auto;
     }
-    
     .about-team-member h4 {
       margin-top: 10px;
     }
-    
     .about-team-member p {
       font-size: 0.9em;
       color: #444;
@@ -257,10 +199,8 @@
     <h1>Our Vacation Concierge</h1>
   </header>
   <!-- Navigation Bar -->
-  <nav>
-    <!-- Hamburger icon -->
+  <nav id="main-nav">
     <div id="hamburger-icon" onclick="toggleNav()">&#9776;</div>
-    <!-- Navigation links -->
     <div class="nav-links" id="nav-links">
       <a href="javascript:void(0)" onclick="showSection('home')" id="home-link">Home</a>
       <a href="javascript:void(0)" onclick="showSection('services')" id="services-link">Services</a>
@@ -268,8 +208,10 @@
       <a href="javascript:void(0)" onclick="showSection('contact')" id="contact-link">Contact</a>
     </div>
   </nav>
-  <div class="container fade-in">
-    <div id="home" class="section">
+  
+  <!-- Full-width Sections -->
+  <div id="home" class="section">
+    <div class="content">
       <h2>Welcome to Our Vacation Concierge</h2>
       <p>Your Personal Concierge Service for Luxurious and Customized Travel Experiences</p>
       <!-- Slideshow -->
@@ -293,8 +235,10 @@
       <p>We provide luxury concierge services tailored to meet all your travel, event, and personal assistance needs.</p>
       <button onclick="showSection('services')">Explore Services</button>
     </div>
-    <!-- Detailed Services Section -->
-    <div id="services" class="section">
+  </div>
+  
+  <div id="services" class="section">
+    <div class="content">
       <h2>Our Premium Concierge Services</h2>
       <p>At Our Vacation Concierge, we offer bespoke services designed to make your travel and personal experiences as seamless, luxurious, and unforgettable as possible. From curating the finest vacation experiences to arranging exclusive events, our attention to detail and commitment to excellence sets us apart.</p>
       <h3>1. Tailored Travel Planning</h3>
@@ -342,18 +286,18 @@
         <li>Daily Personal Assistance</li>
         <li>Emergency Response and Assistance</li>
       </ul>
-      <button onclick="showSection('home')">Back to Home</button>
+      <button onclick="showSection('about')">About Us</button>
     </div>
-    <div id="about" class="section fade-in">
+  </div>
+  
+  <div id="about" class="section">
+    <div class="content">
       <h2>About Us</h2>
-      <!-- Company History -->
       <h3>Our Story</h3>
       <p>Founded with a passion for luxury travel and personalized service, Our Vacation Concierge was born out of a desire to redefine high-end hospitality. What started as a small bespoke travel planning service has grown into an elite concierge experience, offering world-class service to discerning travelers around the globe.</p>
-      <img src="photo-of-owner.jpg" alt="Photo of Owner" style="width:100%; max-width:600px; border-radius:10px; margin:20px 0;">
-      <!-- Mission Statement -->
+      <img src="https://imgs.search.brave.com/rYpKM7PzpUh_nTDdJdF3-bHrMivLRvhom7b2Xp68SpQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vd3d3Lm55/ZGFpbHluZXdzLmNv/bS93cC1jb250ZW50/L3VwbG9hZHMvMjAy/My8xMi9BUDE3MzA0/NTE0NDYzODg5Lmpw/Zz9maXQ9NjIwLDk5/OTlweCZzc2w9MQ" alt="Photo of Owner" style="height: 100%; width:100%; max-width:600px; border-radius:10px; margin:20px 0;">
       <h3>Our Mission</h3>
       <p>To curate unparalleled, tailor-made travel and lifestyle experiences that exceed expectations, ensuring our clients enjoy luxury, exclusivity, and effortless perfection in every aspect of their journey.</p>
-      <!-- Core Values -->
       <h3>Our Core Values</h3>
       <ul style="list-style:none; padding:0;">
         <li><strong>Exclusivity:</strong> We offer rare and unique experiences that only a select few have access to.</li>
@@ -362,27 +306,25 @@
         <li><strong>Confidentiality:</strong> Your privacy is our priority.</li>
         <li><strong>Unparalleled Service:</strong> We are available 24/7 to cater to your every need.</li>
       </ul>
-      <!-- Meet the Team -->
       <h3>Meet Our Team</h3>
       <p>Behind every seamless experience is a team of passionate experts dedicated to crafting your dream getaway.</p>
       <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
         <div class="about-team-member">
-          <img src="photo-ceo.jpg" alt="CEO Photo">
-          <h4>John Smith</h4>
-          <p>Founder & CEO - A visionary leader in luxury travel, ensuring every experience is extraordinary.</p>
+          <img src="https://imgs.search.brave.com/aciJllIEONRzLW5wkZ9oVE1IvozzFEcN2mcDab0IGT0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMtbmEuc3NsLWlt/YWdlcy1hbWF6b24u/Y29tL2ltYWdlcy9J/LzgxVHJqVVMxQUlM/LmpwZw" alt="CEO Photo">
+          <h4>Donald Trump</h4>
+          <p>CEO - Leading with a bold vision and unmistakable style.</p>
         </div>
         <div class="about-team-member">
-          <img src="photo-concierge.jpg" alt="Head Concierge Photo">
-          <h4>Emily Johnson</h4>
-          <p>Head Concierge - Dedicated to making the impossible possible for our elite clientele.</p>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/68/Joe_Biden_presidential_portrait.jpg" alt="Head Concierge Photo">
+          <h4>Joe Biden</h4>
+          <p>Head Concierge - Ensuring every experience is handled with care and precision.</p>
         </div>
         <div class="about-team-member">
-          <img src="photo-travel-expert.jpg" alt="Luxury Travel Expert Photo">
-          <h4>Michael Davis</h4>
-          <p>Luxury Travel Expert - Curating one-of-a-kind, unforgettable journeys worldwide.</p>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/President_Barack_Obama.jpg" alt="Luxury Travel Expert Photo">
+          <h4>Barack Obama</h4>
+          <p>Luxury Travel Expert - Curating unforgettable journeys with a touch of sophistication.</p>
         </div>
       </div>
-      <!-- Client Testimonials -->
       <h3>What Our Clients Say</h3>
       <p>Our clients trust us to create seamless, extraordinary experiences. Here’s what they have to say:</p>
       <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:20px;">
@@ -399,7 +341,6 @@
           <p><strong>- Olivia M.</strong></p>
         </div>
       </div>
-      <!-- Why Choose Us -->
       <h3>Why Choose Us?</h3>
       <p>With countless concierge services available, why should you trust us with your luxury travel and lifestyle needs?</p>
       <ul style="list-style:none; padding:0;">
@@ -409,34 +350,39 @@
         <li>✔ <strong>Discretion & Privacy:</strong> Your security and confidentiality are always prioritized.</li>
         <li>✔ <strong>24/7 Support:</strong> Our team is always available for any last-minute needs.</li>
       </ul>
-      <button onclick="showSection('home')">Back to Home</button>
-    </div>
-    <div id="contact" class="section">
-      <h2>Contact Us</h2>
-      <p>Email: info@ourvacationconcierge.com</p>
-      <p>Phone: (850) 123-4567</p>
+      <button onclick="showSection('contact')">Contact Us</button>
     </div>
   </div>
+  
+  <div id="contact" class="section">
+    <div class="content">
+      <h2>We would love to hear from you!</h2>
+      <p>Email: ourvacationconcierge@gmail.com</p>
+      <p>Phone: (850) 123-4567</p>
+      <button onclick="showSection('home')">Back to Home</button>
+    </div>
+  </div>
+  
   <footer>
     <div class="social-icons">
       <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
-      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Twitter_logo_2012.svg" alt="Twitter"></a>
       <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram"></a>
     </div>
     <p>&copy; 2025 Our Vacation Concierge. All Rights Reserved.</p>
   </footer>
+  
   <script>
     function showSection(sectionId) {
       // Hide all sections
       document.querySelectorAll('.section').forEach(section => {
         section.style.display = 'none';
       });
-      // Show the clicked section
+      // Show the selected section
       const selectedSection = document.getElementById(sectionId);
       if (selectedSection) {
         selectedSection.style.display = 'block';
       }
-      // Highlight the active link
+      // Update active link styling
       document.querySelectorAll('.nav-links a').forEach(link => {
         link.style.fontWeight = 'normal';
         link.style.textDecoration = 'none';
@@ -447,18 +393,10 @@
         activeLink.style.textDecoration = 'underline';
       }
     }
-    
-    // Initialize with the home section visible
-    window.onload = () => {
-      document.getElementById('nav-links').style.display = 'none';
-      document.getElementById('hamburger-icon').innerHTML = '☰';
-      showSection('home');
-    };
-    
+    // Hamburger toggle for responsive design
     function toggleNav() {
       const navLinks = document.getElementById('nav-links');
       const hamburgerIcon = document.getElementById('hamburger-icon');
-    
       if (navLinks.style.display === "flex") {
         navLinks.style.display = "none";
         hamburgerIcon.classList.remove('open');
@@ -467,11 +405,26 @@
         hamburgerIcon.classList.add('open');
       }
     }
-    
+    // Set nav margin so it appears below the fixed header
+    window.onload = () => {
+      const header = document.querySelector('header');
+      const nav = document.getElementById('main-nav');
+      nav.style.marginTop = header.offsetHeight + 'px';
+      showSection('home');
+    };
+    // Hide nav when scrolled past header; otherwise show it.
+    window.addEventListener('scroll', function() {
+      const nav = document.getElementById('main-nav');
+      const header = document.querySelector('header');
+      if (window.scrollY > header.offsetHeight) {
+        nav.style.display = 'none';
+      } else {
+        nav.style.display = 'flex';
+      }
+    });
     // Slideshow functionality
     let slideIndex = 0;
     showSlides();
-    
     function showSlides() {
       const slides = document.querySelectorAll('.slides');
       slides.forEach((slide) => {
